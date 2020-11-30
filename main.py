@@ -6,16 +6,21 @@ gross_wage = 4000
 
 def main():
     expenses, names = csv_to_array("Expenses.csv")
-    finalNet, taxes = estimate_final(expenses)
+    final_net, taxes = estimate_net(expenses)
+    # clean all the values containing "%", referred as taxes
     clean_out(expenses, names)
+    # add those values as a single "Taxes" name in the pie chart
     expenses.append(taxes)
     names.append("Taxes")
-    grp(expenses, names, finalNet)
+    # Graphic plot
+    grp(expenses, names, final_net)
 
 
 def csv_to_array(filename):
+    # array in which the data will be saved
     expenses = []
     names = []
+    # read every single line of the csv and store their values
     with open(filename, 'r') as csv_file:
         reader = csv.DictReader(csv_file)
         for line in reader:
@@ -26,7 +31,7 @@ def csv_to_array(filename):
     return expenses, names
 
 
-def estimate_final(expenses):
+def estimate_net(expenses):
     taxes = []
     total_expenses = 0
     for expense in expenses:
@@ -38,13 +43,12 @@ def estimate_final(expenses):
     total_taxes = 0
     if len(taxes) > 0:
         for tax in taxes:
-            tax_to_apply = tax.replace("%", "")
-            tax_to_apply = float(tax_to_apply)
+            tax_to_apply = float(tax.replace("%", ""))
             tax_estimated = gross_wage * tax_to_apply / 100
             total_taxes = total_taxes + tax_estimated
             no_taxes_wage = no_taxes_wage - tax_estimated
-    finalNet = no_taxes_wage - total_expenses
-    return finalNet, total_taxes
+    final_net = no_taxes_wage - total_expenses
+    return final_net, total_taxes
 
 
 def is_int(val):
@@ -56,11 +60,17 @@ def is_int(val):
 
 
 def clean_out(expenses, names):
+    names_to_remove = []
+    expenses_to_remove = []
     for exp in expenses:
         if "%" in exp:
             i = expenses.index(exp)
-            names.remove(names[i])
-            expenses.remove(expenses[i])
+            names_to_remove.append(names[i])
+            expenses_to_remove.append(expenses[i])
+
+    for i in range(len(expenses_to_remove)):
+        expenses.remove(expenses_to_remove[i])
+        names.remove(names_to_remove[i])
 
 
 main()
