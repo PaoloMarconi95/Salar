@@ -62,6 +62,7 @@ def is_int(val):
 def clean_out(expenses, names):
     names_to_remove = []
     expenses_to_remove = []
+    
     for exp in expenses:
         if "%" in exp:
             i = expenses.index(exp)

@@ -1,9 +1,10 @@
 Name,Cost
-Assicurazione,200
+Cassa Malati,257
 Spesa,400
-Benzina,80
+Benzina,120
+Macchina,168
+Assicurazione,85
 Affitto,810
-Luce,50
-Telefono,20
-Extras,200
+Luce,10
+Telefono,40
 Taxes,17.9%
