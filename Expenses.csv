@@ -1,10 +1,12 @@
 Name,Cost
-Cassa Malati,257
+Cassa Malati,292,75
 Spesa,400
-Benzina,120
+Benzina,150
 Macchina,168
-Assicurazione,85
-Affitto,810
-Luce,10
+Assicurazione,120
+Affitto,1250
+Luce,20
 Telefono,40
-Taxes,17.9%
+CrossFit,134
+Parcheggio,120
+Taxes,18%

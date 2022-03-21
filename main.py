@@ -1,12 +1,13 @@
 import csv
 from graphic import main as grp
 
-gross_wage = 4000
+gross_wage = 5231
 
 
 def main():
     expenses, names = csv_to_array("Expenses.csv")
     final_net, taxes = estimate_net(expenses)
+    print(final_net)
     # clean all the values containing "%", referred as taxes
     clean_out(expenses, names)
     # add those values as a single "Taxes" name in the pie chart
@@ -39,6 +40,7 @@ def estimate_net(expenses):
             total_expenses = total_expenses + int(expense)
         else:
             taxes.append(expense)
+    print(taxes)
     no_taxes_wage = gross_wage
     total_taxes = 0
     if len(taxes) > 0:
